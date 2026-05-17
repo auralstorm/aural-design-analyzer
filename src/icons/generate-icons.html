@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><title>Icon Generator</title></head>
+<body>
+<p>Open this file in a browser and right-click each canvas to save as PNG:</p>
+<script>
+[16, 48, 128].forEach(size => {
+  const canvas = document.createElement('canvas');
+  canvas.width = size; canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  
+  // Background
+  ctx.fillStyle = '#e94560';
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size/2, 0, Math.PI*2);
+  ctx.fill();
+  
+  // Letter "D"
+  ctx.fillStyle = '#fff';
+  ctx.font = `bold ${size*0.6}px sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('D', size/2, size/2);
+  
+  const p = document.createElement('p');
+  p.textContent = `icon${size}.png:`;
+  document.body.appendChild(p);
+  
+  const link = document.createElement('a');
+  link.download = `icon${size}.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.textContent = `Download icon${size}.png`;
+  document.body.appendChild(link);
+  document.body.appendChild(document.createElement('br'));
+  document.body.appendChild(canvas);
+  document.body.appendChild(document.createElement('hr'));
+});
+</script>
+</body>
+</html>

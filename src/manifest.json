@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Aural Design Analyzer",
+  "version": "1.0.0",
+  "description": "分析网站设计语言和结构，生成可用于 AI 对话的结构化 Prompt",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "content/utils.js",
+        "content/color-analyzer.js",
+        "content/typography-analyzer.js",
+        "content/spacing-analyzer.js",
+        "content/visual-effects-analyzer.js",
+        "content/structure-analyzer.js",
+        "content/component-analyzer.js",
+        "content/responsive-analyzer.js",
+        "content/accessibility-analyzer.js",
+        "content/css-variable-analyzer.js",
+        "content/main.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
